@@ -1,0 +1,26 @@
+{
+  "name": "microsoft-interview-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShowMeTheGita/microsoft-interview-task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShowMeTheGita/microsoft-interview-task/issues"
+  },
+  "homepage": "https://github.com/ShowMeTheGita/microsoft-interview-task#readme",
+  "dependencies": {
+    "@azure/msal-browser": "^2.22.1",
+    "express": "^4.17.3",
+    "morgan": "^1.10.0",
+    "yargs": "^17.4.0"
+  }
+}
