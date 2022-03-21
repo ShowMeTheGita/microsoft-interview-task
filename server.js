@@ -36,6 +36,7 @@ const config = {
 
 
 const cca = new msal.ConfidentialClientApplication(config);
+let loggedInUser = {};
 
 app.get('/login', (req, res) => {
     const authCodeUrlParameters = {
@@ -54,6 +55,10 @@ app.get('/index.js', function(req, res){
 });
 
 
+app.get('/loggedInUser', (req, res) => {
+    res.json(loggedInUser);
+});
+
 app.get('/redirect', (req, res) => {
     const tokenRequest = {
         code: req.query.code,
@@ -63,6 +68,7 @@ app.get('/redirect', (req, res) => {
 
     cca.acquireTokenByCode(tokenRequest).then((response) => {
         console.log("\nResponse: \n:", response);
+        loggedInUser = response;
         res.sendFile(__dirname + '/index.html')
     }).catch((error) => {
         console.log(error);
