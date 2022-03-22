@@ -3,19 +3,26 @@ window.onload = function () {
 }
 
 function welcomeMessage() {
+
     var xmlHttp = new XMLHttpRequest();
+
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
+
     url = "http://localhost:3000/loggedInUser"
-    xmlHttp.open("GET", url, true); // true for asynchronous 
+
+    xmlHttp.open("GET", url, true);
     xmlHttp.send(null);
+
 }
 
-let userInfo;
+
 function getUserInfo() {
+
     url = "http://localhost:3000/loggedInUser"
+
     fetch(url).then(function(response) {
         return response.json();
     }).then(function(data) {
@@ -23,10 +30,14 @@ function getUserInfo() {
         let name = email.substring(0, email.lastIndexOf("@"));
         document.getElementById("welcome-message").innerHTML = "Hello, " + name
     })
+
 }
 
+
 function callGraphMe() {
-    url = "http://localhost:3000/getUserDetailsGraph"
+
+    const url = "http://localhost:3000/getUserDetailsGraph"
+
     fetch(url).then(function(response) {
         return response.json();
     }).then(function(data) {
@@ -37,19 +48,33 @@ function callGraphMe() {
         document.getElementById("office-location").innerHTML = data.officeLocation
         document.getElementById("azure-ad-id").innerHTML = data.id
     })
+
 }
 
 
-function updateUser(e) {
+function updateUserGraphMe(e) {
+    
     e.preventDefault();
 
     let newUserInfo = {
-        jobTitle: document.getElementById("job-title-post").value,
-        mobilePhone: document.getElementById("mobile-phone-post").value,
-        officeLocation: document.getElementById("mobile-phone-post").value
+        jobTitle: document.getElementById("job-title-form").value,
+        mobilePhone: document.getElementById("mobile-phone-form").value,
+        officeLocation: document.getElementById("office-location-form").value
     }
 
-    
+    const url = "http://localhost:3000/updateUserDetailsGraph"
+
+    console.log(newUserInfo)
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newUserInfo)
+    }).then(response => response.json())
+      .then(data => { console.log('Success:', data);
+    }).catch((error) => { console.error('Error:', error); });
 
 }
 

@@ -2,6 +2,7 @@
 ///////////////// Express Config /////////////////////
 
 const express = require("express");
+const bodyParser = require("body-parser")
 const msal = require('@azure/msal-node');
 const path = require('path');
 const fetch = require('cross-fetch');
@@ -10,6 +11,7 @@ const SERVER_PORT = process.env.PORT || 3000;
 
 // Create Express App and Routes
 const app = express();
+app.use(bodyParser.json())
 
 app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`))
 
@@ -99,5 +101,11 @@ app.get('/getUserDetailsGraph', (req, res) =>  {
     }).then(function(data) {
         res.json(data)
     });
+
+});
+
+app.post('/updateUserDetailsGraph', (req, res) =>  {
+
+    console.log(req.body)
 
 });
