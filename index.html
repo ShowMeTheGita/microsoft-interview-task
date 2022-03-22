@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Auth with MSAL.js</title>
-
+    <style> table, th, td { border: 1px solid black; } </style>
     <!-- IE support: add promises polyfill before msal.js  -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/bluebird@3.7.2/js/browser/bluebird.min.js"></script>
     <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.0.0-beta.4/js/msal-browser.js" integrity="sha384-7sxY2tN3GMVE5jXH2RL9AdbO6s46vUh9lUid4yNCHJMUzDoj+0N4ve6rLOmR88yN" crossorigin="anonymous"></script>
@@ -22,15 +22,50 @@
           <button class="btn btn-primary" id="callGraphMe" onclick="callGraphMe()">Click here to call Microsoft Graph</button>            
         </div>
 
-        <table>
-            <tr>
-                <th>User Information</th>
-            </tr>
-            <tr>
-                <td>test</td>
-                <td>test</td>
-            </tr>
-        </table>
+        <div style="float: left;">
+          <table style="border: 1px solid black">
+              <tr>
+                  <th>User Information</th>
+                  <th>Value</th>
+              </tr>
+              <tr>
+                  <td>Display Name</td>
+                  <td id="display-name"></td>
+              </tr>
+              <tr>
+                  <td>Given Name</td>
+                  <td id="given-name"></td>
+              </tr>
+              <tr>
+                  <td>Job Title</td>
+                  <td id="job-title"></td>
+              </tr>
+              <tr>
+                  <td>Mobile Phone</td>
+                  <td id="mobile-phone"></td>
+              </tr>
+              <tr>
+                  <td>Office Location</td>
+                  <td id="office-location"></td>
+              </tr>
+              <tr>
+                  <td>DevX Team Sandbox Azure AD ID</td>
+                  <td id="azure-ad-id"></td>
+              </tr>
+          </table>
+        </div>
+
+        <div style="float: left; padding-left: 10em;">
+          <form onsubmit="updateUser(event)">
+            <label for="jobTitle">Job Title:</label><br>
+            <input type="text" id="job-title-post" name="fname"><br>
+            <label for="mobilePhone">Mobile Phone:</label><br>
+            <input type="text" id="mobile-phone-post" name="sname"><br><br>
+            <label for="officeLocation">Office Location:</label><br>
+            <input type="text" id="office-location-post" name="office-location-post"><br><br>
+            <input type="submit" value="Update">
+          </form>
+        </div>
 
     <!-- importing bootstrap.js and supporting js libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

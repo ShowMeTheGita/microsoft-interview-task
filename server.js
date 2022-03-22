@@ -1,8 +1,10 @@
+
 ///////////////// Express Config /////////////////////
 
 const express = require("express");
 const msal = require('@azure/msal-node');
 const path = require('path');
+const fetch = require('cross-fetch');
 
 const SERVER_PORT = process.env.PORT || 3000;
 
@@ -66,7 +68,7 @@ app.get('/loggedInUser', (req, res) => {
 app.get('/redirect', (req, res) => {
     const tokenRequest = {
         code: req.query.code,
-        scopes: ["user.read"],
+        scopes: ["User.Read", "User.ReadWrite"],
         redirectUri: "http://localhost:3000/redirect",
     };
 
@@ -89,9 +91,9 @@ app.get('/getUserDetailsGraph', (req, res) =>  {
 
     fetch(url, {
         method: 'GET',
-        headers: new Headers({
-            'Authorization': `Bearer ${tokenResponse.accessToken}`
-        })
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
     }).then(function(response) {
         return response.json();
     }).then(function(data) {

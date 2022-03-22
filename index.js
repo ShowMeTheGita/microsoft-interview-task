@@ -30,9 +30,27 @@ function callGraphMe() {
     fetch(url).then(function(response) {
         return response.json();
     }).then(function(data) {
-        console.log(data)
+        document.getElementById("display-name").innerHTML = data.displayName
+        document.getElementById("given-name").innerHTML = data.givenName
+        document.getElementById("job-title").innerHTML = data.jobTitle
+        document.getElementById("mobile-phone").innerHTML = data.mobilePhone
+        document.getElementById("office-location").innerHTML = data.officeLocation
+        document.getElementById("azure-ad-id").innerHTML = data.id
     })
 }
 
+
+function updateUser(e) {
+    e.preventDefault();
+
+    let newUserInfo = {
+        jobTitle: document.getElementById("job-title-post").value,
+        mobilePhone: document.getElementById("mobile-phone-post").value,
+        officeLocation: document.getElementById("mobile-phone-post").value
+    }
+
+    
+
+}
 
 
