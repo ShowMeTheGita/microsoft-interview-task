@@ -36,7 +36,7 @@ The steps were as follows: Login to the tenant -> Azure AD -> App registrations 
 * Application (client) ID
 * Directory (tenant) ID  
 
-A client secret was also required, and as such "WebApp Client Secret" was created under the "Certificates & secrets" tab.  
+A client secret was also required, and as such "WebApp Client Secret" was created under the "Certificates & secrets" tab. (Yes I was a bit lazy and had the secret as plaintext on the js files, hence the reason for the private repository. Sorry! :) )  
 
 API permissions were also needed, so Microsoft Graph "User.Read" and "User.ReadWrite" were granted under the "API permissions" tab.
 
