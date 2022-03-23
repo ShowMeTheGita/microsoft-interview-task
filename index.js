@@ -1,25 +1,12 @@
 window.onload = function () {
-    getUserInfo()
+    welcomeMessage()
 }
 
+/*
+Custom welcome message using the logged-in user's username
+Retrieved from the token flow json response
+*/
 function welcomeMessage() {
-
-    var xmlHttp = new XMLHttpRequest();
-
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-
-    url = "http://localhost:3000/loggedInUser"
-
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send(null);
-
-}
-
-
-function getUserInfo() {
 
     url = "http://localhost:3000/loggedInUser"
 
@@ -33,7 +20,11 @@ function getUserInfo() {
 
 }
 
-
+/* 
+Makes a call to the backend endpoint responsible for interracting with the Graph API
+Receives user's information and populates the html table with certain attributes
+Also outputs the entire json response from the Graph API to the frontend to an html pre tag for clarity
+*/
 function callGraphMe() {
 
     const url = "http://localhost:3000/getUserDetailsGraph"
@@ -47,11 +38,17 @@ function callGraphMe() {
         document.getElementById("mobile-phone").innerHTML = data.mobilePhone
         document.getElementById("office-location").innerHTML = data.officeLocation
         document.getElementById("azure-ad-id").innerHTML = data.id
+
+        document.getElementById("json").innerHTML = JSON.stringify(data, undefined, 2);
     })
 
 }
 
-
+/*
+Sends a POST to the backend endpoint responsible for updating user's info using the Graph API
+The request contains a json created from the user's html form input with a new job title, mobile phone, and office location
+Currently not working (more info on the backend endpoint comment)
+*/
 function updateUserGraphMe(e) {
     
     e.preventDefault();
@@ -63,8 +60,6 @@ function updateUserGraphMe(e) {
     }
 
     const url = "http://localhost:3000/updateUserDetailsGraph"
-
-    console.log(newUserInfo)
 
     fetch(url, {
         method: 'POST',
