@@ -184,3 +184,24 @@ app.post('/updateUserDetailsGraph', (req, res) =>  {
     });
 
 });
+
+
+app.post('/updateUserPasswordGraph', (req, res) =>  {
+
+    let graphEndpoint = "me";
+    const url = baseGraphUrl + graphEndpoint;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(req.body)
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        res.json(data)
+    });
+
+});

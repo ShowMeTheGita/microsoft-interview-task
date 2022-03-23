@@ -22,7 +22,9 @@
           <button class="btn btn-primary" id="callGraphMe" onclick="callGraphMe()">Click here to call Microsoft Graph</button>            
         </div>
 
-        <div style="float: left;">
+<div style="display:flex; justify-content:space-around; align-items:center; padding:2em">
+
+        <div>
           <table style="border: 1px solid black">
               <tr>
                   <th>User Information</th>
@@ -55,8 +57,16 @@
           </table>
         </div>
 
-        <div style="float: left; padding-left: 10em;">
-          <form onsubmit="updateUserGraphMe(event)">
+        <div>
+          <pre id="json"></pre>
+        </div>
+
+</div>
+
+<div style="display:flex; justify-content:center; align-items:center; padding:2em">
+
+        <div>
+          <form style="padding:4em" onsubmit="updateUserGraphMe(event)">
             <label for="jobTitle">Job Title:</label><br>
             <input type="text" id="job-title-form" name="job-title-form"><br>
             <label for="mobilePhone">Mobile Phone:</label><br>
@@ -66,10 +76,19 @@
             <input type="submit" value="Update">
           </form>
         </div>
-
-        <div style="float: left; padding-left: 5em;">
-          <pre id="json"></pre>
+        <div>
+          <form style="padding:4em" onsubmit="updateUserPasswordGraphMe(event)">
+            <label for="oldPassword">Old Password</label><br>
+            <input type="password" id="old-password" name="old-password"><br>
+            <label for="mobilePhone">New Password</label><br>
+            <input type="password" id="new-password" name="new-password"><br><br>
+            <input type="submit" value="Update">
+          </form>
         </div>
+
+        
+
+</div>
 
     <!-- importing bootstrap.js and supporting js libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

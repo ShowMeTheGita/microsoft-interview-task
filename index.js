@@ -74,3 +74,30 @@ function updateUserGraphMe(e) {
 }
 
 
+function updateUserPasswordGraphMe(e) {
+
+    e.preventDefault();
+
+    let passwords = {
+        oldPassword: document.getElementById("old-password").value,
+        newPassword: document.getElementById("new-password").value
+    }
+
+    const url = "http://localhost:3000/updateUserPasswordGraph"
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newUserInfo)
+    }).then(response => response.json())
+      .then(data => { 
+          console.log('Success:', data);
+    }).catch((error) => { 
+        console.error('Error:', error);
+        alert("Password provided does not match the old password") 
+    });
+
+}
+
