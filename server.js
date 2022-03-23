@@ -71,10 +71,15 @@ Passes the scope&redirectUri to a function of the cca object in order to fulfill
 app.get('/login', (req, res) => {
     const authCodeUrlParameters = {
         scopes: ["User.Read", "User.ReadWrite"],
-       redirectUri: "http://localhost:3000/redirect",
+        redirectUri: "http://localhost:3000/redirect",
     };
 
     cca.getAuthCodeUrl(authCodeUrlParameters).then((response) => {
+
+        console.log("\n------------------------ Auth code URL ---------------------")
+        console.log(response)
+        console.log("------------------------------------------------------------\n")
+
         res.redirect(response);
     }).catch((error) => console.log(JSON.stringify(error)));
 });
@@ -103,6 +108,11 @@ Once retrieved, saves the user's username and accessToken to a var
 If auth flow completes successfuly, lands the user on our main index.html page 
 */
 app.get('/redirect', (req, res) => {
+
+    console.log("--------------- Code received by redirect endpoint --------------")
+    console.log(req.query)
+    console.log("-----------------------------------------------------------------")
+
     const tokenRequest = {
         code: req.query.code,
         scopes: ["User.Read", "User.ReadWrite"],
@@ -110,7 +120,9 @@ app.get('/redirect', (req, res) => {
     };
 
     cca.acquireTokenByCode(tokenRequest).then((response) => {
-        console.log("\nResponse: \n:", response);
+        console.log("\n--------------------------------Response with access token:-------------------------------");
+        console.log(response)
+        console.log("---------------------------------------------------------------------------")
         let username = response.account.username;
         loggedInUser = {'username': username};
         accessToken = response.accessToken;
