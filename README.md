@@ -49,7 +49,7 @@ API permissions were also needed, so Microsoft Graph "User.Read" (the required f
 
 The App has two core "stages": the authentication process, and the interaction with the Graph API.  
 
-It uses the MSAL.js library interchangingly with Express.js endpoints to perform all the necessary auth token flow operation.  
+It uses the MSAL.js library interchangingly with Express.js endpoints to perform all the necessary auth token flow operations.  
 Once the auth process is completed and the user is signed-in, an index.html page is presented with a clickable button that will both populate a table with some of the user's information, as well as presenting the raw json output from Microsoft Graph on the page itself.  
 All calls to the Graph API are delegated to the backend via initial calls performed using JavaScript's 'fetch' API in the frontend. Once in the backend, the cross-fetch module is used jointly with Express to send requests to the Graph API and return the results back to the user.  
 
