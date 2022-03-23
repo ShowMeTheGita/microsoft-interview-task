@@ -58,7 +58,7 @@ There is also a PoC HTML form that can be submitted in order to update specific 
 Additional information regarding the specific code can be viewed commented directly in the files.
 
 
-### References
+### Useful References
 
 * **Microsoft Graph REST API v1.0 (user resource type):** https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0
 * **Javascript SPA Tutorial:** https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-javascript-auth-code
