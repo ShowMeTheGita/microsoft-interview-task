@@ -16,7 +16,6 @@
 
 
 ///////////////// Express Config /////////////////////
-
 const express = require("express");
 const bodyParser = require("body-parser") 
 const msal = require('@azure/msal-node');
@@ -34,7 +33,7 @@ app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listen
 
 const clientId = "8142c14f-9866-43e9-a0d0-e93f773f8503" // Retrieved from the App Registration dashboard
 const authorityId = "560a8f3a-5282-4c2b-ac62-51234b1428b5" // Retrieved from the App Registration dashboard
-const clientSecret = "EIr7Q~553A_6ywyrAiDcq5pRbsBH8rp6EUu4m" // Yes this should NOT be here
+const clientSecret = process.env.CLIENT_SECRET
 
 // Initial config object used to initialize the msal ConfidentialClientApplication object
 const config = {
