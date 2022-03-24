@@ -69,7 +69,7 @@ Passes the scope&redirectUri to a function of the cca object in order to fulfill
 */ 
 app.get('/login', (req, res) => {
     const authCodeUrlParameters = {
-        scopes: ["User.Read", "User.ReadWrite"],
+        scopes: ["User.Read", "User.ReadWrite", "Directory.AccessAsUser.All"],
         redirectUri: "http://localhost:3000/redirect",
     };
 
@@ -114,7 +114,7 @@ app.get('/redirect', (req, res) => {
 
     const tokenRequest = {
         code: req.query.code,
-        scopes: ["User.Read", "User.ReadWrite"],
+        scopes: ["User.Read", "User.ReadWrite", "Directory.AccessAsUser.All"],
         redirectUri: "http://localhost:3000/redirect",
     };
 
@@ -186,10 +186,18 @@ app.post('/updateUserDetailsGraph', (req, res) =>  {
 });
 
 
+/* 
+Endpoint to update the user's password by calling MS Graph API
+This functionality uses/requires the 'Directory.AccessAsUser.All' permissions
+The json body payload comes pre-built in the frontend (this endpoint accepts only two keys in the json: 'currentPassword' and 'newPassword')
+Sends the response code received by the MS Graph back to the frontend
+*/
 app.post('/updateUserPasswordGraph', (req, res) =>  {
 
-    let graphEndpoint = "me";
+    let graphEndpoint = "me/changePassword";
     const url = baseGraphUrl + graphEndpoint;
+
+    console.log(JSON.stringify(req.body))
 
     fetch(url, {
         method: 'POST',
@@ -199,9 +207,9 @@ app.post('/updateUserPasswordGraph', (req, res) =>  {
         },
         body: JSON.stringify(req.body)
     }).then(function(response) {
-        return response.json();
+        return response
     }).then(function(data) {
-        res.json(data)
-    });
+        res.status(data.status).end()
+    })
 
 });

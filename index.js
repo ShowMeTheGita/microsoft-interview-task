@@ -73,13 +73,16 @@ function updateUserGraphMe(e) {
 
 }
 
-
+/*
+Sends a POST request to the backend endpoint responsible for calling the Graph endpoint that changes the user's password
+Alerts the user depending on the response received
+*/
 function updateUserPasswordGraphMe(e) {
 
     e.preventDefault();
 
     let passwords = {
-        oldPassword: document.getElementById("old-password").value,
+        currentPassword: document.getElementById("old-password").value,
         newPassword: document.getElementById("new-password").value
     }
 
@@ -90,14 +93,16 @@ function updateUserPasswordGraphMe(e) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newUserInfo)
-    }).then(response => response.json())
-      .then(data => { 
-          console.log('Success:', data);
-    }).catch((error) => { 
-        console.error('Error:', error);
-        alert("Password provided does not match the old password") 
-    });
+        body: JSON.stringify(passwords)
+    }).then(response => {
+        if (response.status === 400) {
+            alert("Password provided does not match the old password") ;
+        } else if(response.status === 204) {
+            alert("Password changed successfully.")
+        } else {
+            alert("Something went wrong.")
+        }
+    })
 
 }
 
