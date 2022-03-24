@@ -197,8 +197,6 @@ app.post('/updateUserPasswordGraph', (req, res) =>  {
     let graphEndpoint = "me/changePassword";
     const url = baseGraphUrl + graphEndpoint;
 
-    console.log(JSON.stringify(req.body))
-
     fetch(url, {
         method: 'POST',
         headers: {
