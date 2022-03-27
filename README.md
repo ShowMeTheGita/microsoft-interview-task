@@ -19,6 +19,7 @@ Node.js installed
 
 
 ### Instructions
+### UPDATE - Accesses no longer work due to tenant privileges having been revoked since
 
 * **Clone the app:** git clone https://github.com/ShowMeTheGita/microsoft-interview-task.git
 * **cd to the app folder:** cd microsoft-interview-task
